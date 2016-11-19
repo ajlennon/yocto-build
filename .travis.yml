@@ -1,0 +1,28 @@
+# .travis.yml: Travis CI configuration
+#
+# Builds at: https://travis-ci.org/vlvrd/yocto-build
+
+dist: trusty
+sudo: required
+
+language: python
+python:
+  - "2.7"
+
+cache:
+  directories:
+  - external/poky/build/download
+  - external/poky/build/sstate
+
+before_install:
+  - sudo ./tools/setup.sh
+script:
+  - cd external/poky/
+  - source oe-init-build-env
+  - bitbake core-image-minimal
+
+git:
+  depth: 3
+
+notifications:
+  email: false
