@@ -1,5 +1,4 @@
 # .travis.yml: Travis CI configuration
-#
 # Builds at: https://travis-ci.org/vlvrd/yocto-build
 
 dist: trusty
@@ -14,12 +13,17 @@ cache:
   - external/poky/build/download
   - external/poky/build/sstate
 
+env:
+  global:
+  - YOCTO_TIMEOUT=1200
+
 before_install:
-  - sudo ./tools/setup.sh
+  - cd $TRAVIS_BUILD_DIR/tools/
+  - sudo ./setup.sh
 script:
-  - cd external/poky/
+  - cd $TRAVIS_BUILD_DIR/external/poky/
   - source oe-init-build-env
-  - bitbake core-image-minimal
+  - (bitbake core-image-minimal) & sleep $YOCTO_TIMEOUT ; kill -INT $!
 
 git:
   depth: 3
