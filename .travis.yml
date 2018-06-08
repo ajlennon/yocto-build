@@ -15,7 +15,7 @@ cache:
 
 env:
   global:
-  - YOCTO_TIMEOUT=1200
+  - YOCTO_TIMEOUT=21600
 
 before_install:
   - cd $TRAVIS_BUILD_DIR/tools/
