@@ -28,5 +28,5 @@ script:
 git:
   depth: 3
 
-notifications:
-  email: false
+#notifications:
+#  email: false
