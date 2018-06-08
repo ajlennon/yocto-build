@@ -2,3 +2,11 @@
 	path = external/poky
 	url = git://git.yoctoproject.org/poky
 	branch = morty
+[submodule "external/meta-openembedded"]
+	path = external/meta-openembedded
+	url = git://github.com/openembedded/meta-openembedded.git
+	branch = morty
+[submodule "external/meta-mono"]
+	path = external/meta-mono
+	url = git://git.yoctoproject.org/meta-mono
+	branch = morty

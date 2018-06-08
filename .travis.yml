@@ -23,7 +23,12 @@ before_install:
 script:
   - cd $TRAVIS_BUILD_DIR/external/poky/
   - source oe-init-build-env
-  - (bitbake core-image-minimal) & sleep $YOCTO_TIMEOUT ; kill -INT $!
+  - echo "INHERIT += ' rm_work testimage '" >> conf/local.conf
+  - echo "BBLAYERS += ' $TRAVIS_BUILD_DIR/external/meta-openembedded/meta-oe $TRAVIS_BUILD_DIR/external/meta-mono '" >> conf/bblayers.conf
+  - (bitbake core-image-mono) & sleep $YOCTO_TIMEOUT ; kill -INT $!
+
+# Run tests on image
+#bitbake -c testimage core-image-mono
 
 git:
   depth: 3
